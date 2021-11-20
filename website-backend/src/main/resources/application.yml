@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: database, email, log, resource
+  # Database: Mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${websiteConfig.database.url}
+    username: ${websiteConfig.database.username}
+    password: ${websiteConfig.database.password}
+  # Mail
+  mail:
+    host: smtp.gmail.com
+    username: ${websiteConfig.mail.username}
+    password: ${websiteConfig.mail.password}
+    port: 587
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+server:
+  port: 8081

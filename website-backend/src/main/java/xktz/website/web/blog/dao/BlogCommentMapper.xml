@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xktz.website.web.blog.dao.BlogCommentMapper">
+    <resultMap id="BaseResultMap" type="xktz.website.web.blog.domain.BlogComment">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user" jdbcType="INTEGER" property="user"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="blog" jdbcType="INTEGER" property="blog"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user, content, blog
+    </sql>
+    <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_blog_comment
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByBlog" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_blog_comment
+        where blog = #{blog, jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByBlogId" parameterType="java.lang.Integer">
+        delete
+        from t_blog_comment
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="xktz.website.web.blog.domain.BlogComment"
+            useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into t_blog_comment (user, content,
+                                    blog)
+        values (#{user,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
+                #{blog,jdbcType=INTEGER})
+    </insert>
+    <update id="updateByIdSelective" parameterType="xktz.website.web.blog.domain.BlogComment">
+        update t_blog_comment
+        <set>
+            <if test="user != null">
+                user = #{user,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="blog != null">
+                blog = #{blog,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateById" parameterType="xktz.website.web.blog.domain.BlogComment">
+        update t_blog_comment
+        set user    = #{user,jdbcType=INTEGER},
+            content = #{content,jdbcType=VARCHAR},
+            blog    = #{blog,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

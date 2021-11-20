@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xktz.website.global.activation.dao.ActivationCodeMapper">
+  <resultMap id="BaseResultMap" type="xktz.website.global.activation.model.ActivationCode">
+    <id column="key" jdbcType="VARCHAR" property="key" />
+    <result column="user" jdbcType="INTEGER" property="user" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `key`, user
+  </sql>
+  <insert id="insert" parameterType="xktz.website.global.activation.model.ActivationCode">
+    insert into t_activation_code (`key`, user)
+    values (#{key,jdbcType=VARCHAR}, #{user,jdbcType=INTEGER})
+  </insert>
+  <select id="selectByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_activation_code
+    where `key` = #{activationKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByKey" parameterType="java.lang.String">
+    delete from t_activation_code
+    where `key` = #{activationKey, jdbcType=VARCHAR}
+  </delete>
+</mapper>
