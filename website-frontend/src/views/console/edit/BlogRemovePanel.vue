@@ -53,7 +53,6 @@ export default {
 
     const view = async function (id) {
       let ret = (await axios.get(`/blog/${id}`)).data;
-      console.log(ret)
       blogContentHtml.value = convert(ret.content, ret.header.type);
       openView.value = true;
     }

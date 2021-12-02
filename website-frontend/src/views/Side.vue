@@ -13,7 +13,9 @@ import SideItem from "@/components/main/SideItem";
 
 export default {
   name: "side",
-  components: {SideItem}
+  components: {SideItem},
+  setup() {
+  }
 }
 </script>
 

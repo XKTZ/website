@@ -27,8 +27,10 @@ export default {
     const blogContainer = ref(null);
     const blogs = ref([]);
     axios.get("/blog/").then((res) => {
-      res.data.forEach((blog) => {
-        blogs.value.push(blog)
+      res.data.sort((a, b) => b.id-a.id);
+      res.data.forEach(x => {
+        x.createdDate = new Date(x.createdDate)
+        blogs.value.push(x)
       })
     })
     return {
