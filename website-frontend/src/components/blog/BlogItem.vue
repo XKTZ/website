@@ -41,6 +41,7 @@ export default {
     "blogContainer"
   ],
   setup(props) {
+
     const cardStyleSetting = ref({
       width: '100%',
     })
