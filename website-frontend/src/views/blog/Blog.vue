@@ -1,5 +1,5 @@
 <template>
-  <div ref="blogContainer">
+  <div class="blog" ref="blogContainer">
     <el-space direction="vertical" wrap>
         <blog-item v-for="blog in blogs"
                    :key="blog"
@@ -45,5 +45,7 @@ export default {
 </script>
 
 <style scoped>
-
+.blog {
+  padding-top: 10px;
+}
 </style>

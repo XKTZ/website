@@ -15,7 +15,7 @@ export default {
     const content = ref("");
 
     const contentMarkdown = `
-# About me
+# About Me
 
 Hello! I am Yidi Chen. I am now a Grade 12 student in St. Augustine Catholic High School.
 

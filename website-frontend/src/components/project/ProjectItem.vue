@@ -1,6 +1,5 @@
 <template>
-  <div ref="card">
-    <el-card body-style="width: 180px; height: 160px">
+    <el-card :body-style="cardStyle">
       <!--the header-->
       <template #header>
         <div class="project-item-title">
@@ -11,11 +10,10 @@
         </div>
       </template>
       <!--the desc-->
-      <div class="project-item-desc" :style="`width: ${cardWidth}; `">
+      <div class="project-item-desc">
         {{ desc }}
       </div>
     </el-card>
-  </div>
 </template>
 
 <script>
@@ -26,26 +24,28 @@ export default {
   props: [
     "url",
     "name",
-    "desc"
+    "desc",
+    "projectContainer"
   ],
-  setup() {
-    const card = ref(null);
-    const cardWidth = ref("0px");
+  setup(props) {
+    const cardStyle = ref ({
+      width: "100%"
+    });
     onMounted(() => {
-      cardWidth.value = `${card.value.clientWidth * .8}px`
+      cardStyle.value.width = `${props.projectContainer.value.clientWidth * .85}px`;
     })
-    return {card, cardWidth}
+    return {cardStyle}
   }
 }
 </script>
 
 <style scoped>
 .project-item-title {
+  text-align: left;
 }
 
 .project-item-title-text {
-  text-align: center;
-  font-size: 200%;
+  font-size: 150%;
 }
 
 .project-item-desc {
