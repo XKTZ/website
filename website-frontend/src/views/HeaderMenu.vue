@@ -1,7 +1,7 @@
 <template>
   <div class="header-menu">
     <el-menu router mode="horizontal">
-      <el-menu-item @click="openGithub">
+      <el-menu-item>
         <a :href="githubLink" target="_blank" style="text-decoration: none; padding: 0; margin: 0;">
         <span class="header-menu-name-text">
           Yidi Chen
@@ -45,5 +45,10 @@ export default {
   font-family: "Times New Roman", serif;
   font-size: 200%;
   font-weight: 800;
+}
+
+.header-menu {
+  padding: 0;
+  margin: 0;
 }
 </style>
