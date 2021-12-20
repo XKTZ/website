@@ -4,7 +4,7 @@
       <header-menu></header-menu>
     </el-header>
     <el-scrollbar :height="mainHeight" class="main">
-      <el-main>
+      <el-main style="padding-top: 0;">
         <router-view/>
       </el-main>
     </el-scrollbar>
