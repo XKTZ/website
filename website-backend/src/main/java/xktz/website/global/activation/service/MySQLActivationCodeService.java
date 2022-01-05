@@ -8,6 +8,7 @@ import xktz.website.global.activation.dao.ActivationCodeMapper;
 import xktz.website.global.activation.model.ActivationCode;
 import xktz.website.global.activation.model.ActivationCodeNotFoundException;
 import xktz.website.global.activation.util.ActivationCodeUtil;
+import xktz.website.global.user.User;
 import xktz.website.global.user.service.UserService;
 
 /**
@@ -20,10 +21,10 @@ public class MySQLActivationCodeService implements ActivationCodeService {
     private ActivationCodeMapper activationCodeMapper;
 
     @Autowired
-    private UserService userService;
+    private ActivationCodeUtil activationCodeUtil;
 
     @Autowired
-    private ActivationCodeUtil activationCodeUtil;
+    private UserService userService;
 
     @Override
     public boolean contains(String key) {
@@ -42,11 +43,18 @@ public class MySQLActivationCodeService implements ActivationCodeService {
     public synchronized void activate(String code) {
         if (contains(code)) {
             var activeCode = activationCodeMapper.selectByKey(code);
-            userService.activate(activeCode.getUser());
+            activateById(activeCode.getUser());
             activationCodeMapper.deleteByKey(activeCode.getKey());
         } else {
             throw new ActivationCodeNotFoundException(code);
         }
+    }
+
+    @Transactional
+    public int activateById(int userId) {
+        var userTmp = new User(userId, null, null, null, null, true);
+        userService.updateUserById(userTmp);
+        return userId;
     }
 
     @Override

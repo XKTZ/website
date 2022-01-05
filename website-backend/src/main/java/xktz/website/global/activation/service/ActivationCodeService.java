@@ -40,9 +40,18 @@ public interface ActivationCodeService {
     void activate(String code);
 
     /**
+     * Activate a user by id
+     *
+     * @param userId the user id
+     * @return the code
+     */
+    int activateById(int userId);
+
+    /**
      * Register the email address
+     *
      * @param email email address
-     * @param user user
+     * @param user  user
      */
     void registerEmail(String email, int user);
 }

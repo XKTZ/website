@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import xktz.website.global.token.Token;
 import xktz.website.global.token.dao.TokenMapper;
 import xktz.website.global.user.User;
-import xktz.website.global.user.service.UserService;
 import xktz.website.util.TokenUtil;
 
 import java.math.BigInteger;
@@ -31,9 +30,6 @@ public class MySQLTokenService implements TokenService {
 
     @Autowired
     private TokenMapper tokenMapper;
-
-    @Autowired
-    private UserService userService;
 
     private static final Date EXPIRING_DATE = new Date(Long.MIN_VALUE);
 

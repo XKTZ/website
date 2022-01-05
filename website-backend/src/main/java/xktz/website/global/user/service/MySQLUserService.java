@@ -3,7 +3,6 @@ package xktz.website.global.user.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import xktz.website.global.activation.service.ActivationCodeService;
 import xktz.website.global.token.service.TokenService;
 import xktz.website.global.user.User;
 import xktz.website.global.user.dao.UserMapper;
@@ -28,12 +27,6 @@ public class MySQLUserService implements UserService {
      */
     @Autowired
     private TokenService tokenService;
-
-    /**
-     * Activate code service
-     */
-    @Autowired
-    private ActivationCodeService activationCodeService;
 
     @Override
     public List<User> getUsers() {
@@ -66,25 +59,8 @@ public class MySQLUserService implements UserService {
 
     @Override
     @Transactional
-    public User registerUser(String email, String username, String password) {
-        var user = new User(null, username, password, email, false, false);
-        this.addUser(user);
-        activationCodeService.registerEmail(email, user.getId());
-        return user;
-    }
-
-    @Override
-    @Transactional
     public int updateUserById(User user) {
         return userMapper.updateByIdSelective(user);
-    }
-
-    @Override
-    @Transactional
-    public int activate(int userId) {
-        var userTmp = new User(userId, null, null, null, null, true);
-        updateUserById(userTmp);
-        return userId;
     }
 
     @Override

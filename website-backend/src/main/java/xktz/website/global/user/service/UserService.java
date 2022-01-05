@@ -50,30 +50,12 @@ public interface UserService {
     public int addUser(User user);
 
     /**
-     * Register a user
-     *
-     * @param email    the email
-     * @param username the user name
-     * @param password the password
-     * @return the user
-     */
-    public User registerUser(String email, String username, String password);
-
-    /**
      * Revise data in a user by id
      *
      * @param user the user
      * @return the row influenced
      */
     public int updateUserById(User user);
-
-    /**
-     * Activate a user
-     *
-     * @param userId the user
-     * @return user id
-     */
-    public int activate(int userId);
 
     /**
      * Delete the user by id
