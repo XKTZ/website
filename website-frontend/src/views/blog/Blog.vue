@@ -31,7 +31,6 @@ export default {
     const loading = ref(true);
 
     axios.get("/blog/").then((res) => {
-      console.log(res)
       res.data.sort((a, b) => b.id - a.id);
       res.data.forEach(x => {
         x.createdDate = new Date(x.createdDate)
