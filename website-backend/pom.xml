@@ -10,7 +10,7 @@
     </parent>
     <groupId>xktz</groupId>
     <artifactId>website-backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>website-backend</name>
     <description>website-backend</description>
 
@@ -51,7 +51,7 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.2.0</version>
+            <version>2.2.2</version>
         </dependency>
 
         <dependency>
